@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DeleteApp1"
+             xmlns:behav="clr-namespace:DeleteApp1.Behaviors;assembly=DeleteApp1"
+             x:Class="DeleteApp1.MainPage"
+             BindingContext="{x:Static local:ExampleData.ViewModel}"
+             x:Name="page">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="{Binding Count}" />
+                <ListView ItemsSource="{Binding MyList}" Margin="20">
+                    <ListView.Behaviors>
+                        <behav:EventToCommandBehavior EventName="ItemAppearing" Command="{Binding ItemAppearingCommand}" />
+                    </ListView.Behaviors>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout MinimumHeightRequest="50" >
+                                    <StackLayout Margin="10,10,10,10">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto" />
+                                                <ColumnDefinition Width="auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Text}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
+                                            <Image Grid.Row="0" Grid.Column="1" Source="{Binding Image}" Aspect="AspectFit"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>
